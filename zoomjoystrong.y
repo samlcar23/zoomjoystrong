@@ -1,5 +1,6 @@
 %{
 	#include <stdio.h>
+	#include "zoomjoystrong.h"
 	void yyerror(const char* msg);
 	int yylex();
 %}
