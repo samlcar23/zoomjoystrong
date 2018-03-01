@@ -56,6 +56,10 @@ set_color:		SET_COLOR INT INT INT END_STATEMENT
 
 int main(int argc, char** argv){
 	printf("\n==========\n");
+	printf("Hello\n");
+
+	setup();
+
 	yyparse();
 	return 0;
 }
