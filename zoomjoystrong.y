@@ -6,7 +6,7 @@
 %}
 
 %error-verbose
-%start zoomjoystrong.y
+%start zoomjoystrong
 
 %union {int i; char* str; float f;}
 
