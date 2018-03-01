@@ -9,15 +9,14 @@
 
 %union {long i; char* str; double d;}
 
-%token TEXT
-%token SEPARATOR
-%token LONG
-%token DOUBLE
+%token LINE
+%token POINT
+%token RECTANGLE
+%token CIRCLE
+%token SET_COLOR
 
-%type<str> TEXT
-%type<i> LONG
-%type<d> DOUBLE
-
+%type<i> INT
+%type<f> FLOAT
 
 
 
