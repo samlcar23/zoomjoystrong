@@ -8,7 +8,7 @@
 %error-verbose
 %start zipcode_list
 
-%union {long i; char* str; double d;}
+%union {int i; float f;}
 
 %token LINE
 %token POINT
