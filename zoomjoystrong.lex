@@ -16,6 +16,9 @@ end						{return END;}
 ([0-9]+)				{yylval.i = atoi(yytext); return INT;}
 ([0-9]+[.][0-9]+)		{yylval.f = atoi(yytext); return FLOAT;}
 ;						{return END_STATEMENT;}
-[\t\n]					;					
+
+[ \t\n]					;					
+
+. 						{printf("%s", "Invalid Input!");}
 
 %%
