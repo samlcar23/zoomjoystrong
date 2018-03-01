@@ -6,9 +6,9 @@
 %}
 
 %error-verbose
-%start zipcode_list
+%start zoomjoystrong.y
 
-%union {int i; float f;}
+%union {int i; char* str; float f;}
 
 %token LINE
 %token POINT
@@ -24,19 +24,29 @@
 %type<f> FLOAT
 
 
-
 %%
 
-point_entry:		POINT INT INT END_STATEMENT
+zoomjoystrong: command_statements END END_STATEMENT	{ finish(); return 0; }
+	|		  END END_STATEMENT						{ finish(); return 0; }
 ;
 
-line_entry:			LINE INT INT INT INT END_STATEMENT
+command_statements: 	command
+	|					command command_statements
 ;
 
-circle_entry:		CIRCLE INT INT INT END_STATEMENT
+command: 			point|line|circle|rectangle|set_color 
 ;
 
-rectangle_entry:	RECTANGLE INT INT INT INT END_STATEMENT
+point:		POINT INT INT END_STATEMENT
+;
+
+line:			LINE INT INT INT INT END_STATEMENT
+;
+
+circle:		CIRCLE INT INT INT END_STATEMENT
+;
+
+rectangle:	RECTANGLE INT INT INT INT END_STATEMENT
 ;
 
 set_color:		SET_COLOR INT INT INT END_STATEMENT
