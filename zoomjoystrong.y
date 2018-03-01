@@ -15,6 +15,10 @@
 %token RECTANGLE
 %token CIRCLE
 %token SET_COLOR
+%token END
+%token END_STATEMENT
+%token INT
+%token FLOAT
 
 %type<i> INT
 %type<f> FLOAT
@@ -22,12 +26,22 @@
 
 
 %%
-zipcode_list:		zipcode_entry
-				|	zipcode_entry zipcode_list
+
+point_entry:		POINT INT INT END_STATEMENT
 ;
 
-zipcode_entry:		TEXT SEPARATOR TEXT SEPARATOR TEXT SEPARATOR TEXT SEPARATOR TEXT SEPARATOR DOUBLE SEPARATOR DOUBLE SEPARATOR TEXT SEPARATOR TEXT SEPARATOR LONG SEPARATOR LONG SEPARATOR LONG SEPARATOR
+line_entry:			LINE INT INT INT INT END_STATEMENT
 ;
+
+circle_entry:		CIRCLE INT INT INT END_STATEMENT
+;
+
+rectangle_entry:	RECTANGLE INT INT INT INT END_STATEMENT
+;
+
+set_color:		SET_COLOR INT INT INT END_STATEMENT
+;
+
 %%
 
 int main(int argc, char** argv){
