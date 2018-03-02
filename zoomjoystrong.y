@@ -103,6 +103,7 @@ int main(int argc, char** argv){
 *****************************************************************/
 void yyerror(const char* msg){
 	fprintf(stderr, "ERROR! %s\n", msg);
+	yyparse();
 }
 
 /****************************************************************
