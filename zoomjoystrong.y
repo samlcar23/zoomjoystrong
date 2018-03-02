@@ -45,7 +45,7 @@ point:		POINT INT INT END_STATEMENT	{
 			}
 ;
 
-line:			LINE INT INT INT INT END_STATEMENT { line($2, $3, $4, $5); 
+line:			LINE INT INT INT INT END_STATEMENT { 
 				
 				if(validLocation($2, $3) == 1){
 					if(validLocation($4, $5) == 1){
@@ -55,23 +55,25 @@ line:			LINE INT INT INT INT END_STATEMENT { line($2, $3, $4, $5);
 			}
 ;
 
-circle:		CIRCLE INT INT INT END_STATEMENT { circle($2, $3, $4); 
-
+circle:		CIRCLE INT INT INT END_STATEMENT { 
 				if(validLocation($2, $3) == 1){
-					circle($2, $3);
+					circle($2, $3, $4);
 				}
 			}
 ;
 
-rectangle:	RECTANGLE INT INT INT INT END_STATEMENT { rectangle($2, $3, $4, $5); 
-
+rectangle:	RECTANGLE INT INT INT INT END_STATEMENT {
 				if(validLocation($2, $3) == 1){
-					rectangle($2, $3);
+					rectangle($2, $3, $4, $5);
 				}
 			}
 ;
 
-set_color:		SET_COLOR INT INT INT END_STATEMENT { if(validColor($2, $3, $4)){set_color($2, $3, $4); }}
+set_color:	SET_COLOR INT INT INT END_STATEMENT { 
+				if(validColor($2, $3, $4)){
+					set_color($2, $3, $4); 
+				}
+			}
 ;
 
 %%
