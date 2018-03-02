@@ -93,7 +93,7 @@ void yyerror(const char* msg){
 }
 
 int validLocation(int x, int y){
-	if((0 <= x && x <= WIDTH) && 0 <= y && y <= HEIGHT)){
+	if((0 <= x && x <= WIDTH) && (0 <= y && y <= HEIGHT)){
 		return 1;
 	} else {
 		printf("(%d, %d) is not a valid location.\nClosing Program.\n", x, y);
