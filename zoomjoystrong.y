@@ -111,6 +111,7 @@ void yyerror(const char* msg){
 *
 *@param x the x coordinate
 *@param y the y coordinate
+*@return 0 for invalid location and 1 for valid location
 ****************************************************************/
 int validLocation(int x, int y){
 	if((0 <= x && x <= WIDTH) && (0 <= y && y <= HEIGHT)){
@@ -127,6 +128,7 @@ int validLocation(int x, int y){
 *@param r the r value
 *@param g the g value
 *@param b the b value
+*@return 0 for invalid color and 1 for valid color
 ****************************************************************/
 int validColor(int r, int g, int b){
 	if (r < 0 || r > 255) {
