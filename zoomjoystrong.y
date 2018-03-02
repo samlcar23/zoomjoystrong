@@ -39,6 +39,15 @@ command_statements: 	command
 command: 			point|line|circle|rectangle|set_color 
 ;
 
+set_color:	SET_COLOR INT INT INT END_STATEMENT { 
+				if(validColor($2, $3, $4) == 1){
+					set_color($2, $3, $4); 
+				} else {
+					finish();
+				}
+			}
+;
+
 point:		POINT INT INT END_STATEMENT	{ 
 					
 				if(validLocation($2, $3) == 1){
@@ -71,29 +80,38 @@ rectangle:	RECTANGLE INT INT INT INT END_STATEMENT {
 			}
 ;
 
-set_color:	SET_COLOR INT INT INT END_STATEMENT { 
-				if(validColor($2, $3, $4)){
-					set_color($2, $3, $4); 
-				}
-			}
-;
 
 %%
 
+/*******************************************************************
+* Main prints out a welcome message and starts the program.
+********************************************************************/
 int main(int argc, char** argv){
 	printf("===============================================\n");
 	printf("Welcome to ZoomJoyStrong! A fun game (sort of)!\n");
-	printf("Your Bounds are : Width: %d, Height: %d\n", WIDTH, HEIGHT);
 
 	setup();
 
 	yyparse();
 	return 0;
 }
+
+/*****************************************************************
+*yyerror prints out an error message.
+*
+* @param msg a message to print
+*****************************************************************/
 void yyerror(const char* msg){
 	fprintf(stderr, "ERROR! %s\n", msg);
 }
 
+/****************************************************************
+* validLocation checks to see if the provided point is within
+* the window.
+*
+*@param x the x coordinate
+*@param y the y coordinate
+****************************************************************/
 int validLocation(int x, int y){
 	if((0 <= x && x <= WIDTH) && (0 <= y && y <= HEIGHT)){
 		return 1;
@@ -103,14 +121,21 @@ int validLocation(int x, int y){
 	}
 }
 
+/****************************************************************
+* validColor checks to see if the rgb value is between 0 and 255.
+*
+*@param r the r value
+*@param g the g value
+*@param b the b value
+****************************************************************/
 int validColor(int r, int g, int b){
-	if (r<0 || r>255) {
+	if (r < 0 || r > 255) {
 		printf("The value of r (%d) in rgb is not valid.\n", r);
 		return 0;
-	} else if (g<0 || g>255) {
+	} else if (g < 0 || g > 255) {
 		printf("The value of g (%d) in rgb is not valid.\n", g);
 		return 0;
-	} else if (b<0 || b>255) {
+	} else if (b < 0 || b > 255) {
 		printf("The value of b (%d) in rgb is not valid.\n", b);
 		return 0;
 	} else {
