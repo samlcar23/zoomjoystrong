@@ -104,18 +104,16 @@ int validLocation(int x, int y){
 }
 
 int validColor(int r, int g, int b){
-	if(0 <= r <= 255 && 0 <= g <= 255 && 0 <= b <= 255){
-		return 1;
-	} else if (0 > r > 255) {
+	if (r<0 || r>255) {
 		printf("The value of r (%d) in rgb is not valid.\n", r);
 		return 0;
-	} else if (0 > g > 255) {
+	} else if (g<0 || g>255) {
 		printf("The value of g (%d) in rgb is not valid.\n", g);
 		return 0;
-	} else if (0 > b > 255) {
+	} else if (b<0 || b>255) {
 		printf("The value of b (%d) in rgb is not valid.\n", b);
 		return 0;
 	} else {
-		return 0;
+		return 1;
 	}
 }
