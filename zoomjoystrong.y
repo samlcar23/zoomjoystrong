@@ -1,6 +1,8 @@
 %{
 	#include <stdio.h>
 	#include "zoomjoystrong.h"
+	int validLocation(int x, int y);
+	int validColor(int r, int g, int b);
 	void yyerror(const char* msg);
 	int yylex();
 %}
